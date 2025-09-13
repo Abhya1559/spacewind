@@ -3,19 +3,18 @@ import User from "@/models/User";
 import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   try {
     await connectToDB();
-    const { username, email, password } = await request.json();
-    if (!username || !email || !password){
+    const { name, email, password } = await request.json();
+    if (!name || !email || !password) {
       return NextResponse.json(
         { error: "Please fill all the fields" },
         { status: 400 }
       );
     }
-    //Check if user already exists
-    const existingUser = await User.findOne({ email });
 
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
         { error: "User already exists" },
@@ -24,15 +23,15 @@ export async function POST(request: NextRequest, response: NextResponse) {
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({ username, email, password: hashPassword });
+    const newUser = new User({ name, email, password: hashPassword });
     await newUser.save();
+
     return NextResponse.json(
       { message: "User registered successfully" },
       { status: 201 }
     );
   } catch (error) {
-    console.log("Error in registering user", error);
+    console.error("Error in registering user:", error);
     return NextResponse.json(
       { error: "Error in registering user" },
       { status: 500 }

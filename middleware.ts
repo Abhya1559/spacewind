@@ -4,12 +4,22 @@ import path from "path";
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
-  const user = token ? await verifyToken(token) : null;
+  let user = null;
+  if (token) {
+    try {
+      user = await verifyToken(token);
+    } catch {
+      user = null; // handle invalid/expired token
+    }
+  }
 
   const { pathname } = request.nextUrl;
 
-  const isAuthRoute = ["/login", "/register"].includes(pathname);
-  const isPublicRoute = ["/", "/login", "/register"].includes(pathname);
+  const authRoutes = ["/login", "/register"];
+  const publicRoutes = ["/"];
+
+  const isAuthRoute = authRoutes.includes(pathname);
+  const isPublicRoute = publicRoutes.includes(pathname) || isAuthRoute;
 
   if (!user && !isPublicRoute) {
     return NextResponse.redirect(new URL("/login", request.url));

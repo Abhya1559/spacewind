@@ -21,7 +21,7 @@ export default function Home() {
   bg-gradient-to-r from-green-500 to-green-700 text-white shadow-lg 
   hover:from-green-600 hover:to-green-800 hover:shadow-xl 
   transform hover:scale-105 transition-all duration-300 ease-in-out"
-          onClick={() => router.push("/signup")}
+          onClick={() => router.push("/register")}
         >
           Signup
         </button>

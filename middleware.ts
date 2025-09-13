@@ -5,9 +5,12 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
   let user = null;
   if (token) {
-    try { user = await verifyToken(token); } catch { user = null; }
+    try {
+      user = verifyToken(token);
+    } catch {
+      user = null;
+    }
   }
-
   const { pathname } = request.nextUrl;
 
   if (!user && pathname.startsWith("/dashboard")) {

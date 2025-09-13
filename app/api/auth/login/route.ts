@@ -8,7 +8,6 @@ export async function POST(request: NextRequest) {
   try {
     await connectToDB();
     const { email, password } = await request.json();
-    console.log(email, password);
 
     if (!email || !password) {
       return NextResponse.json(

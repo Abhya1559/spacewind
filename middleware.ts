@@ -1,33 +1,23 @@
 import { NextResponse, NextRequest } from "next/server";
 import { verifyToken } from "./lib/jwt";
-import path from "path";
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
   let user = null;
   if (token) {
-    try {
-      user = await verifyToken(token);
-    } catch {
-      user = null; // handle invalid/expired token
-    }
+    try { user = await verifyToken(token); } catch { user = null; }
   }
 
   const { pathname } = request.nextUrl;
 
-  const authRoutes = ["/login", "/register"];
-  const publicRoutes = ["/"];
-
-  const isAuthRoute = authRoutes.includes(pathname);
-  const isPublicRoute = publicRoutes.includes(pathname) || isAuthRoute;
-
-  if (!user && !isPublicRoute) {
+  if (!user && pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (user && isAuthRoute) {
+  if (user && (pathname === "/login" || pathname === "/register")) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
+
   return NextResponse.next();
 }
 

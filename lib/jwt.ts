@@ -1,10 +1,12 @@
 import jwt from "jsonwebtoken";
-const JWT_SECRET = process.env.JWT_SECRET;
+
 
 interface UserPayload {
   username: string;
   email: string;
 }
+const JWT_SECRET = process.env.JWT_SECRET;
+console.log("JWT_SECRET:", JWT_SECRET)
 
 export async function generateToken(payload: UserPayload): Promise<string> {
   if (!JWT_SECRET) {

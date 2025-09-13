@@ -1,13 +1,13 @@
 import mongoose, { Schema, Document, models, model } from "mongoose";
 const userSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, unique: true },
+    username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   },
   { timestamps: true }
 );
 
-const Space = models.Space || model("Space", userSchema);
+const User = models.User || model("User", userSchema);
 
-export default Space;
+export default User;

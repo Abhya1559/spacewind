@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   try {
     await connectToDB();
     const { email, password } = await request.json();
-    console.log(email,password)
+    console.log(email, password);
 
     if (!email || !password) {
       return NextResponse.json(
@@ -35,7 +35,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
     const token = await generateToken({
       username: existingUser.username,
       email: existingUser.email,
@@ -45,8 +44,8 @@ export async function POST(request: NextRequest) {
       {
         message: "Login successful",
         user: {
+          username: existingUser.username,
           email: existingUser.email,
-          name: existingUser.username,
         },
       },
       { status: 200 }
@@ -54,9 +53,9 @@ export async function POST(request: NextRequest) {
 
     response.cookies.set("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 3600, // 1 hour
+      secure: false,
+      sameSite: "lax",
+      maxAge: 60 * 60, // 1 hour
       path: "/", // ensure available across the app
     });
 

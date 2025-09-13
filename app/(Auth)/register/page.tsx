@@ -15,7 +15,7 @@ import { useState } from "react";
 
 export default function Register() {
   const router = useRouter();
-  const [name, setName] = useState("");
+  const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,10 +28,10 @@ export default function Register() {
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
       const data = await res.json();
-
+      console.log("Response data:", data, res);
       if (res.ok) {
         router.push("/login");
       } else {
@@ -48,9 +48,7 @@ export default function Register() {
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Create an account</CardTitle>
-          <CardDescription>
-            Enter your details below to sign up
-          </CardDescription>
+          <CardDescription>Enter your details below to sign up</CardDescription>
         </CardHeader>
         <CardContent>
           {error && (
@@ -62,11 +60,11 @@ export default function Register() {
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
               <Input
-                id="name"
+                id="username"
                 type="text"
                 placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
                 required
               />
             </div>

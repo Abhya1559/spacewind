@@ -30,14 +30,9 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
         credentials: "include",
       });
-
-      // Log the res.ok value here to see what it is
-      console.log("Is response OK?", res.ok);
-      // Log the raw response status
-      console.log("Response status:", res.status);
       const data = await res.json();
       if (res.ok) {
-        window.location.href = "/dashboard";
+        router.push("/dashboard");
       } else {
         setError(data.error || "Login failed");
       }

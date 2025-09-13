@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-24 bg-blue-950">
-      <div className="flex space-x-10 border-1 p-8 rounded-2xl bg-blue-200  shadow-2xl">
+      <div className="flex space-x-10 border-1 p-8 rounded-2xl bg-blue-200 shadow-4xl">
         <button
           className="px-6 py-3 cursor-pointer mt-10 text-lg font-semibold rounded-2xl 
   bg-gradient-to-r from-red-500 to-red-700 text-white shadow-lg 
@@ -29,4 +29,3 @@ export default function Home() {
     </div>
   );
 }
-

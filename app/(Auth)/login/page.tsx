@@ -48,12 +48,12 @@ export default function Login() {
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <a
+                  {/* <a
                     href="#"
                     className="ml-auto inline-block  underline-offset-4 hover:font-semibold text-blue-900 cursor-pointer hover:text-blue-950"
                   >
                     Forgot your password?
-                  </a>
+                  </a> */}
                 </div>
                 <Input id="password" type="password" required />
               </div>

@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🚀 Spacewind Internship Trial Project
 
-First, run the development server:
+This project is submitted as part of the **Spacewind Internship Trial Assignment**.  
+The implementation covers **User Authentication with JWT** and a **Protected Dashboard** using **Next.js 14 (App Router)** and **MongoDB**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+----------
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   🔑 User Authentication (Register + Login)
+    
+-   🔒 Password hashing with **bcrypt**
+    
+-   🍪 JWT stored in **HTTP-only cookies**
+    
+-   🛡 Middleware for protecting `/dashboard`
+    
+-   📂 MongoDB database integration
+    
+-   🎨 Responsive UI built with Tailwind CSS
+    
+-   🌐 Deployed on **Vercel**
+    
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+----------
 
-## Learn More
+## 🛠 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+-   **Frontend & Backend**: Next.js 14 (App Router)
+    
+-   **Database**: MongoDB (Mongoose ORM)
+    
+-   **Authentication**: JWT + HTTP-only cookies
+    
+-   **Styling**: Tailwind CSS
+    
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+----------
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📂 Project Structure
 
-## Deploy on Vercel
+`/project-root
+ ├── /app
+ │   ├── /api
+ │   │   ├── /auth
+ │   │   │   ├── register/route.ts
+ │   │   │   ├── login/route.ts
+ │   │   └── middleware.ts
+ │   ├── dashboard/page.tsx
+ │   ├── login/page.tsx
+ │   ├── register/page.tsx
+ │   └── layout.tsx
+ ├── /lib
+ │   ├── connectDb.ts # MongoDB connection │   ├── jwt.ts # JWT helper functions ├── /models
+ │   └── User.ts # User schema ├── README.md
+ └── package.json` 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+----------
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+`git clone https://github.com/your-username/spacewind-auth-trial.git cd spacewind-auth-trial` 
+
+### 2️⃣ Install Dependencies
+
+`npm install` 
+
+### 3️⃣ Create `.env.local` File
+
+`MONGODB_URI=your-mongodb-uri
+JWT_SECRET=your-secret-key` 
+
+### 4️⃣ Run Locally
+
+`npm run dev` 
+
+Visit: [http://localhost:3000](http://localhost:3000)
+
+----------
+
+## 🌐 Deployment
+
+The project is deployed on **Vercel**:  
+👉 Live Demo Link
+
+----------
+
+## 📦 Submission
+
+-   GitHub Repository: [Repo Link](https://github.com/your-username/spacewind-auth-trial)
+    
+-   Live Deployed Link: Vercel Link
+    
+
+----------
+
+## 📄 Internship Details
+
+-   **Duration**: 1 Month
+    
+-   **Mode**: Remote
+    
+-   **Perks**: Letter of Completion
+    
+-   **Tasks**: Project/category-based tasks + occasional quick tasks
+    
+
+----------

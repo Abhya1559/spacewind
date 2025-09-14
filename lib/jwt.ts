@@ -1,10 +1,13 @@
 import jwt from "jsonwebtoken";
 
+import {jwtVerify} from "jose"
+
 interface UserPayload {
   username: string;
   email: string;
 }
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET!;
+const secret = new TextEncoder().encode(JWT_SECRET);
 
 export function generateToken(payload: UserPayload): string {
   if (!JWT_SECRET) {
@@ -16,9 +19,11 @@ export function generateToken(payload: UserPayload): string {
 
 export function verifyToken(token: string): UserPayload | null {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET as string) as UserPayload;
+    const decoded = jwtVerify(token, secret) as unknown as UserPayload;
+    console.log("Decoded token:", decoded);
     return decoded;
   } catch (error) {
+    console.error("Error verifying token:", error);
     return null;
   }
 }

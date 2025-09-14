@@ -4,6 +4,8 @@ import { verifyToken } from "./lib/jwt";
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
   let user = null;
+
+  console.log("Middleware token:", token);
   if (token) {
     try {
       user = verifyToken(token);
@@ -11,6 +13,8 @@ export async function middleware(request: NextRequest) {
       user = null;
     }
   }
+  console.log("Middleware user:", user);
+
   const { pathname } = request.nextUrl;
 
   if (!user && pathname.startsWith("/dashboard")) {
@@ -18,6 +22,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (user && (pathname === "/login" || pathname === "/register")) {
+    console.log("Redirecting to dashboard");
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 

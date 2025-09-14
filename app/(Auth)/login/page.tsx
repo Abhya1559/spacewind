@@ -32,6 +32,7 @@ export default function Login() {
       });
       const data = await res.json();
       if (res.ok) {
+        console.log("Login successful:", data);
         router.push("/dashboard");
       } else {
         setError(data.error || "Login failed");
@@ -56,6 +57,11 @@ export default function Login() {
               {error}
             </div>
           )}
+
+          <button onClick={() => {
+            console.log("Navigating to dashboard");
+            router.push("/dashboard");
+          }}>to dashboard</button>
           <form onSubmit={handleLogin} className="mt-6">
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
